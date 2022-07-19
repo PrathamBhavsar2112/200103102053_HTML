@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button click Event</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("#bShow").attr("disabled",true);
+
+            $("#bHide").click(function(){
+					if(confirm("Are you sure?"))
+					{
+						$("#d1").hide(2500);
+						$(this).attr("disabled",true);
+						$("#bShow").attr("disabled",false);
+						$("#bToggle").text("Show");
+					}
+			});
+            
+            $("#bShow").click(function(){
+		    		if(confirm("Are you sure?"))
+					{
+						$("#d1").show(2500);
+						$(this).attr("disabled",true);
+						$("#bHide").attr("disabled",false);
+						$("#bToggle").text("Hide");
+					}
+			});   
+            
+            $("bToogle").click(function(){
+                    if(confirm("Are you sure?"))
+                    {
+                        $("#d1").toggle(2500);
+                        $(this).text()==("Hide")
+                        ?($(this).text("Show"),$("#bHide").attr("disabled",true),$("#bShow").attr("disabled",false))
+                        :($(this).text("Hide"),$("#bHide").attr("disabled",false),$("#bShow").attr("disabled",true))
+                    }
+            });
+
+            $("#bPlus").click(function(){
+					var MDH=parseInt($("#d1").css("height"));
+					if(MDH<=600)
+					{
+						MDH+=10;
+						$("#d1").css("height",MDH);
+						$("#d1").css("width",MDH);
+					}
+					else{
+						alert("More than 600px is not possible.");
+					}
+				});
+				
+				$("#bMinus").click(function(){
+					var MDH=parseInt($("#d1").css("height"));
+					if(MDH>=30)
+					{
+						MDH-=10;
+						$("#d1").css("height",MDH);
+						$("#d1").css("width",MDH);
+					}
+					else{
+						alert("Less than 30px is not possible.");
+					}
+				});
+
+
+        });
+    </script>
+    <style>
+        #d1{
+            height: 100px;
+            width: 100px;
+            background-color: darkred;
+        }
+        #bToggle{
+            margin-top: 10px;
+        }
+        #bPlus,#bMinus{
+           font-size: larger;
+           margin-right: 5px; 
+           font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div id="d1"></div><br><br>
+    <button id="bHide">Hide</button>&nbsp&nbsp<button id="bShow">Show</button>
+    <div>
+        <button id="bToggle">Hide</button>
+    </div>
+    <hr>
+    <button id="bPlus">+</button>
+    <button id="bMinus">-</button>
+</body>
+</html>

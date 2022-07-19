@@ -1,0 +1,181 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation HTML</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        var $FNameLNameRegEx = /^([a-zA-Z]{2,20})$/;
+		var $FullNameRegEx = /^([a-zA-Z ]{2,40})$/;
+		var $BankAccountNameRegEx = /^([a-zA-Z ]{2,60})$/;
+		var $PasswordRegEx = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,12}$/;
+		var $EmailIdRegEx = /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,8}\b$/i;
+		var $ConNoRegEx = /^([0-9]{10})$/;
+		var $AgeRegEx = /^([0-9]{1,2})$/;
+		var $AadhaarNoRegEx = /^([0-9]{12})$/;
+		var $GSTNoRegEx=/^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
+		var $IndianDrivingLicenseNoRegEx = /^([A-Z]{2,3}[-/0-9]{8,13})$/;
+		var $IndianVehicleRegNoRegEx = /^([A-Z]{2}[0-9]{1,2}[A-Z]{1,3}[0-9]{1,4})$/;
+		var $PincodeRegEx = /^[1-9][0-9]{5,6}$/;
+		var $PANNoRegEx = /^[A-Z]{3}[ABCFGHLJPT][A-Z][0-9]{4}[A-Z]$/;
+		var $IFSCCodeRegEx = /^[A-Za-z]{4}0[A-Z0-9a-z]{6}$/;
+		var $BankAccountNoRegEx = /^([0-9]{9,18})$/;
+		var $LatitudeLongitude=/^(-?(?:1[0-7]|[1-9])?\d(?:\.\d{1,8})?|180(?:\.0{1,8})?)$/;
+			
+    $(document).ready(function(){
+
+        $("#TName").blur(function(){
+            $("#TNameVal").empty();
+             if($(this).val()=="" || $(this).val()==null){
+                $("#TNameVal").html("(*) Name required ");
+             }
+             else{
+                if(!$(this).val().match($FullNameRegEx)){
+							$("#TNameVal").html("(*) Invalid Name ");
+					}
+             }
+        });
+        $("#TName").keypress(function(e){
+			$("#TNameVal").empty();
+				var Flag=((e.which>=65 && e.which<=90) || (e.which>=97 && e.which<=121));
+					if(Flag==false){
+						$("#TNameVal").html("(*)Invalid Input");
+					}
+					return Flag;
+		});
+        
+        $("#TConNo").blur(function(){
+			$("#TConNoVal").empty();
+				if($(this).val()=="" || $(this).val()==null){
+					$("#TConNoVal").html("(*) Contect No. reqired");
+    			}
+				else{
+					if(!$(this).val().match($ConNoRegEx)){
+						$("#TConNoVal").html("(*) Invalid Contect No.");
+					}
+				}
+		});
+        
+        $("#TConNo").keypress(function(e){
+			$("#TConNoVal").empty();
+				var Flag=(e.which>=48 && e.which<=57);
+				if(Flag==false){
+					$("#TConNoVal").html("(*) Input Invalid");
+        		}
+				return Flag;
+		});  
+
+        $("#TEmail").blur(function(){
+			$("#TEmailVal").empty();
+				if($(this).val()=="" || $(this).val()==null){
+					$("#TEmailVal").html("(*) e-mail id required");
+				}
+				else{
+					if(!$(this).val().match($EmailIdRegEx)){
+						$("#TEmailVal").html("(*) Invalid e-mail id");
+					}
+				}
+		});
+
+        $("#TConMsg").blur(function(){
+			$("#TConMsgVal").empty();
+				if($(this).val()=="" || $(this).val()==null){
+					$("#TConMsgVal").html("(*) Contact message required");
+				}
+				else{
+					if($("#TConMsg").val().length>300){
+						$("#TConMsgVal").html("(*) Invalid Contact message");
+					}
+				}
+        });
+    
+				var TNameFlag=false,TContNoFlag=false,TEmailFlag=false,TConMsgFlag=false;
+
+		$("#BtnSubmit").click(function(){
+			$("#TNameVal").empty();
+				if($("#TName").val()=="" || $("#TName").val()==null){
+					$("#TNameVal").html("(*) Name required");
+					TNameFlag=false;
+				}
+				else{
+					if(!$("#TName").val().match($FullNameRegEx)){
+						$("#TNameVal").html("(*) Invalid name");
+						TNameFlag=false;
+					}
+					else{
+						TNameFlag=true;
+					}
+				}
+			$("#TConNoVal").empty();
+			 	if($("#TConNo").val()=="" || $("#TConNo").val()==null){
+					$("#TConNoVal").html("(*) Contact No. required");
+					TConNoFlag=false;
+			    }
+				else{
+					if(!$("#TConNo").val().match($ConNoRegEx)){
+						$("#TConNoVal").html("(*) Invalid contact No.");
+						TConNoFlag=false;
+					}
+				else{
+						TConNoFlag=true;
+					}
+				}
+			$("#TEmailVal").empty();
+				if($("#TEmail").val()=="" || $("#TEmail").val()==null){
+					$("#TEmailVal").html("(*) Email ID required");
+					TEmailFlag=false;
+				}
+				else{
+					if(!$("#TEmail").val().match($EmailIdRegEx)){
+						$("#TEmailVal").html("(*) Invalid e-mail id");
+						TEmailFlag=false;
+					}
+					else{
+						TEmailFlag=true;
+					}
+				}
+			$("#TContMsgVal").empty();
+				if($("#TConMsg").val()=="" || $("#TConMsg").val()==null){
+					$("#TConMsgVal").html("(*) Contact message required");
+					TConMsgFlag=false;
+				}
+				else{
+					if($("#TConMsg").val().length>300){
+						$("#TConMsgVal").html("(*) Invalid Contact message");
+						TConMsgFlag=false;
+					}
+					else{
+						TConMsgFlag=true;
+					}
+				}
+				if(TNameFlag==true && TConNoFlag==true && TEmailFlag==true && TConMsgFlag==true){
+					$("input,textarea").val("");
+					alert("Form submitted successfully");
+				}
+				else{
+					alert("Invalid Input");
+				}
+		});         
+  });        
+    </script>
+    	<style>
+			small{color:red;}
+		</style>
+</head>
+<body>
+    <input type="text" id="TName" placeholder="Enter Name Here" maxlength="30"><br>
+    <small id="TNameVal"></small>
+    <hr>
+    <input type="text" id="TConNo" placeholder="Enter Contact No." maxlength="10"><br>
+    <small id="TConNoVal"></small>
+    <hr>
+    <input type="text" id="TEmail" placeholder="Enter e-mail id" maxlength="30"><br>
+    <small id="TEmailVal"></small>
+    <hr>
+    <textarea rows="4" id="TConMsg" placeholder="Enter the Contact Msg" maxlength="400"></textarea><br>
+    <small id="TConMsgVal"></small>
+    <hr>
+    <button id="BtnSubmit">Submit</button>
+</body>
+</html>

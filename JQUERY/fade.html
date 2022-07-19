@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).click(function(){   
+            $("#i1").click(function(){
+                $("#d1").fadeIn();
+                $("#d2").fadeIn("slow");
+                $("#d3").fadeIn(2000);     
+            });
+            $("#i2").click(function(){
+                $("#d1").fadeOut();
+                $("#d2").fadeOut("slow");
+                $("#d3").fadeOut(2000);
+            });
+            $("#i3").click(function(){
+                $("#d1").fadeToggle();
+                $("#d2").fadeToggle("slow");
+                $("#d3").fadeToggle(1500);
+            });
+            $("#i4").click(function(){
+                $("#d1").fadeTo("slow",0.10);
+                $("#d2").fadeTo("slow",0.3);
+                $("#d3").fadeTo("slow",0.15);
+                
+            });    
+        })
+    </script>
+    <style>
+        #d1{
+            
+            background-color:coral;
+            height: 100px;
+            width: 100px;
+            display: none;
+        }
+        #d2{ 
+            background-color:blue;
+            height: 100px;
+            width: 100px;
+            display: none;
+        }
+        #d3{
+            background-color:forestgreen;
+            height: 100px;
+            width: 100px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <button id="i1">fade in box</button>
+    <button id="i2">fade out box</button>
+    <button id="i3">fade in/out box</button>
+    <button id="i4">fade box</button>
+    <br><br>
+    <div id="d1"></div><br>
+    <div id="d2"></div><br>
+    <div id="d3"></div><br>
+</body>
+</html>
